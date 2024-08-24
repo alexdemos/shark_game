@@ -8,7 +8,7 @@
             "name": "Debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -23,12 +23,14 @@
               }
             ],
             "windows": {
+              "program": "${workspaceFolder}/main.exe",
               "miDebuggerPath": "C:/raylib/w64devkit/bin/gdb.exe",
             },
             "osx": {
               "MIMode": "lldb"
             },
             "linux": {
+              "program": "${workspaceFolder}/main.exe",
               "miDebuggerPath": "/usr/bin/gdb",
             },
             "preLaunchTask": "build debug"
