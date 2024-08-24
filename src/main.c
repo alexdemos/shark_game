@@ -41,9 +41,10 @@ int main(void)
     //--------------------------------------------------------------------------------------
     const int screenWidth = 1920;
     const int screenHeight = 1080;
+    int enemyAmount = 3;
     struct SharkTraits shark_traits = {1000, 500, 50,2,3};
-    BasicEnemy** enemies = malloc(sizeof(BasicEnemy) * 3);
-    initEnemies(enemies, 3);
+    BasicEnemy* enemies = (BasicEnemy*)malloc(sizeof(BasicEnemy) * enemyAmount);
+    initEnemies(enemies, enemyAmount);
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 

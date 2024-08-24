@@ -15,11 +15,11 @@ typedef struct BasicEnemy {
 } BasicEnemy;
 
 void updateEnemy(BasicEnemy *enemy);
-void updateEnemies(BasicEnemy **enemies, int amount);
+void updateEnemies(BasicEnemy *enemies, int amount);
 
 void drawEnemy(BasicEnemy *enemy);
-void drawEnemies(BasicEnemy **enemies, int amount);
+void drawEnemies(BasicEnemy *enemies, int amount);
 
-void initEnemies(BasicEnemy **buffer, int amount);
+void initEnemies(BasicEnemy *buffer, int amount);
 
 #endif

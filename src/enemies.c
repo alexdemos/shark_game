@@ -2,11 +2,11 @@
 #include "raylib.h"
 #include <stdbool.h>
 
-void initEnemies(BasicEnemy **buffer, int amount){
+void initEnemies(BasicEnemy *buffer, int amount){
     int i;
     for (i=0; i<amount; i++) {
         BasicEnemy enemy = {100*(i+1), 100*(i+1), {100*(i+1),100*(i+1)}, 175, 10, 2, RED, false};
-        buffer[i] = &enemy;
+        buffer[i] = enemy;
     }
 }
 
@@ -19,10 +19,10 @@ void updateEnemy(BasicEnemy *enemy){
     }
 }
 
-void updateEnemies(BasicEnemy **enemies, int amount){
+void updateEnemies(BasicEnemy *enemies, int amount){
     int i;
     for (i=0; i<amount; i++) {
-        updateEnemy(enemies[i]);
+        updateEnemy(&enemies[i]);
     }
 }
 
@@ -30,9 +30,9 @@ void drawEnemy(BasicEnemy *enemy){
     DrawCircle(enemy->x,enemy->y,enemy->size,enemy->color);
 }
 
-void drawEnemies(BasicEnemy **enemies, int amount){
+void drawEnemies(BasicEnemy *enemies, int amount){
     int i;  
     for (i=0; i<amount; i++) {
-        drawEnemy(enemies[i]);  
+        drawEnemy(&enemies[i]);  
     }
 }
