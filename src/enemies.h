@@ -4,11 +4,9 @@
 #include "raylib.h"
 
 typedef struct BasicEnemy {
-    int x;
-    int y;
+    Rectangle rectangle;
     int origin[2];
     int range;
-    int size;
     int speed;
     Color color;
     bool seesPlayer;
@@ -19,6 +17,8 @@ void updateEnemies(BasicEnemy *enemies, int amount);
 
 void drawEnemy(BasicEnemy *enemy);
 void drawEnemies(BasicEnemy *enemies, int amount);
+
+void recycleEnemy(BasicEnemy *enemy, int screenW, int screenH);
 
 void initEnemies(BasicEnemy *buffer, int amount);
 

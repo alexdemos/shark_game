@@ -1,36 +1,11 @@
 #include "enemies.h"
+#include "shark.h"
+#include "ui.h"
+#include "world.h"
+
 #include "raylib.h"
 #include "raymath.h"
 #include <stdlib.h>
-
-
-/***  data ***/
-struct SharkTraits {
-        int x;
-        int y;
-        int size;
-        int speed;
-        int health;
-};
-
-void updateSharkPosition(struct SharkTraits *traits){
-    if(IsKeyDown(KEY_RIGHT)) traits->x += traits->speed;
-    if(IsKeyDown(KEY_LEFT)) traits->x -= traits->speed;
-    if(IsKeyDown(KEY_UP)) traits->y -= traits->speed;
-    if(IsKeyDown(KEY_DOWN)) traits->y += traits->speed;
-}
-
-void drawHealthBar(int health){
-    int i;
-    int screenWidth = GetScreenWidth();
-    for (i = 1; i <= health; i++){
-        DrawCircle(screenWidth - (30*i), 10, 10, RED);
-    }
-}
-
-void drawShark(struct SharkTraits *traits){
-    DrawRectangle(traits->x, traits->y, traits->size, traits->size / 2, BLUE);
-}
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -42,8 +17,11 @@ int main(void)
     const int screenWidth = 1920;
     const int screenHeight = 1080;
     int enemyAmount = 3;
-    struct SharkTraits shark_traits = {1000, 500, 50,2,3};
-    BasicEnemy* enemies = (BasicEnemy*)malloc(sizeof(BasicEnemy) * enemyAmount);
+
+    BasicEnemy* enemies = malloc(sizeof(*enemies) * enemyAmount);
+    Shark *shark = malloc(sizeof(*shark));
+    
+    initShark(shark);
     initEnemies(enemies, enemyAmount);
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
@@ -56,8 +34,9 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-        updateSharkPosition(&shark_traits);
-        updateEnemies(enemies,3);
+        handleCollisions(shark, enemies, enemyAmount, screenWidth, screenHeight);
+        updateSharkPosition(shark);
+        updateEnemies(enemies, enemyAmount);
 
         // Draw
         //----------------------------------------------------------------------------------
@@ -65,9 +44,9 @@ int main(void)
 
             ClearBackground(RAYWHITE);
 
-            drawShark(&shark_traits);
-            drawEnemies(enemies,3);
-            drawHealthBar(shark_traits.health);
+            drawShark(shark);
+            drawEnemies(enemies,enemyAmount);
+            drawHealthBar(shark->health);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
@@ -77,6 +56,7 @@ int main(void)
     //--------------------------------------------------------------------------------------
     CloseWindow();        // Close window and OpenGL context
     free(enemies);
+    free(shark);
     //--------------------------------------------------------------------------------------
 
     return 0;
