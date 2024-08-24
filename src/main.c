@@ -1,5 +1,4 @@
 #include "enemies.h"
-
 #include "raylib.h"
 #include "raymath.h"
 #include <stdlib.h>
