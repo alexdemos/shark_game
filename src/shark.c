@@ -1,33 +1,41 @@
 #include "shark.h"
+#include "world.h"
+
 #include "raylib.h"
 
 void initShark(Shark *shark, int screenW, int screenH){
-    shark->rectangle.x = screenW / 2;
-    shark->rectangle.y = screenH / 2;
-    shark->rectangle.width = 50;
-    shark->rectangle.height = 25;
+    shark->rectangle.x = screenW / 2.0f;
+    shark->rectangle.y = screenH / 2.0f;
+    shark->rectangle.width = 50.0f;
+    shark->rectangle.height = 25.0f;
     shark->speed = 4;
     shark->health = 100;
     shark->xp = 0;
     shark->level = 1;
 }
 
-void updateShark(Shark *shark){
-    updateSharkPosition(shark);
+void updateShark(Shark *shark, World *world){
+    updateSharkPosition(shark, world);
     updateSharkHealth(shark, -.05);
 }
 
-void updateSharkPosition(Shark *shark){
+void updateSharkPosition(Shark *shark, World *world){
     if(IsKeyDown(KEY_RIGHT)) shark->rectangle.x += shark->speed;
     if(IsKeyDown(KEY_LEFT)) shark->rectangle.x -= shark->speed;
     if(IsKeyDown(KEY_UP)) shark->rectangle.y -= shark->speed;
     if(IsKeyDown(KEY_DOWN)) shark->rectangle.y += shark->speed;
+    if(shark->rectangle.x < world->LEFT) shark->rectangle.x = world->LEFT;
+    if(shark->rectangle.x > world->RIGHT) shark->rectangle.x = world->RIGHT;
+    if(shark->rectangle.y > world->GROUND) shark->rectangle.y = world->GROUND;
+    if(shark->rectangle.y < world->SURFACE) shark->rectangle.y = world->SURFACE;
 }
 
 void updateSharkHealth(Shark *shark, float amount){
     float newHealth = shark->health + amount;
     if(newHealth > 100){
         newHealth = 100;
+    } else if(newHealth < 0){
+        newHealth = 0;
     }
     shark->health = newHealth;
 }

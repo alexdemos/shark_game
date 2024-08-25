@@ -2,6 +2,8 @@
 #include "shark.h"
 #include "ui.h"
 #include "world.h"
+#include "camera.h"
+#include "collisions.h"
 
 #include "raylib.h"
 #include "raymath.h"
@@ -20,12 +22,17 @@ int main(void)
 
     BasicEnemy* enemies = malloc(sizeof(*enemies) * enemyAmount);
     Shark *shark = malloc(sizeof(*shark));
+    World *world = malloc(sizeof(*world));
+    Camera2D camera = { 0 };
     
     initShark(shark, screenWidth, screenHeight);
     initEnemies(enemies, enemyAmount);
+    initWorld(world);
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
+    initCamera(&camera, shark);
+    
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
@@ -35,8 +42,11 @@ int main(void)
         // Update
         //----------------------------------------------------------------------------------
         handleCollisions(shark, enemies, enemyAmount);
-        updateShark(shark);
+
+        updateShark(shark, world);    
         updateEnemies(enemies, enemyAmount);
+
+        updateCamera(&camera, shark);
 
         // Draw
         //----------------------------------------------------------------------------------
@@ -44,8 +54,11 @@ int main(void)
 
             ClearBackground(SKYBLUE);
 
+            BeginMode2D(camera);
             drawShark(shark);
             drawEnemies(enemies,enemyAmount);
+            EndMode2D();
+
             drawUI(shark);
 
         EndDrawing();
@@ -57,6 +70,7 @@ int main(void)
     CloseWindow();        // Close window and OpenGL context
     free(enemies);
     free(shark);
+    free(world);
     //--------------------------------------------------------------------------------------
 
     return 0;
