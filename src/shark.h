@@ -5,12 +5,16 @@
 typedef struct Shark {
     Rectangle rectangle;
     int speed;
-    int health;
+    float health;
+    float xp;
+    int level;
 } Shark;
 
-void initShark(Shark *shark);
-void updateSharkPosition(struct Shark *shark);
-void upgradeShark(struct Shark *shark);
-void drawShark(struct Shark *traits);
+void initShark(Shark *shark, int screenW, int screenH);
+void updateShark(Shark *shark);
+void updateSharkHealth(Shark *shark, float amount);
+void updateSharkPosition(Shark *shark);
+void upgradeShark(Shark *shark, int enemySize);
+void drawShark(Shark *traits);
 
 #endif

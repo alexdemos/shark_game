@@ -21,7 +21,7 @@ int main(void)
     BasicEnemy* enemies = malloc(sizeof(*enemies) * enemyAmount);
     Shark *shark = malloc(sizeof(*shark));
     
-    initShark(shark);
+    initShark(shark, screenWidth, screenHeight);
     initEnemies(enemies, enemyAmount);
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
@@ -34,19 +34,20 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-        handleCollisions(shark, enemies, enemyAmount, screenWidth, screenHeight);
-        updateSharkPosition(shark);
+        handleCollisions(shark, enemies, enemyAmount);
+        updateShark(shark);
         updateEnemies(enemies, enemyAmount);
 
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(SKYBLUE);
 
             drawShark(shark);
             drawEnemies(enemies,enemyAmount);
-            drawHealthBar(shark->health);
+
+            drawUI(shark);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

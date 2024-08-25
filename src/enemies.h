@@ -18,7 +18,7 @@ void updateEnemies(BasicEnemy *enemies, int amount);
 void drawEnemy(BasicEnemy *enemy);
 void drawEnemies(BasicEnemy *enemies, int amount);
 
-void recycleEnemy(BasicEnemy *enemy, int screenW, int screenH);
+void recycleEnemy(BasicEnemy *enemy);
 
 void initEnemies(BasicEnemy *buffer, int amount);
 

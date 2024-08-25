@@ -48,9 +48,9 @@ void drawEnemies(BasicEnemy *enemies, int amount){
     }
 }
 
-void recycleEnemy(BasicEnemy *enemy, int screenW, int screenH){
-    enemy->rectangle.x = rand() % screenW;
-    enemy->rectangle.y = rand() % screenH;
+void recycleEnemy(BasicEnemy *enemy){
+    enemy->rectangle.x = rand() % GetScreenWidth();
+    enemy->rectangle.y = rand() % GetScreenHeight();
     enemy->origin[0] = enemy->rectangle.x;
     enemy->origin[1] = enemy->rectangle.y;
 }

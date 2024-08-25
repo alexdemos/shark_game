@@ -1,17 +1,20 @@
 #include "shark.h"
 #include "raylib.h"
 
-void initShark(Shark *shark){
-    float x = 1000;
-    float y = 500;
-    float w = 50;
-    float h = 25;
-    shark->rectangle.x = x;
-    shark->rectangle.y = y;
-    shark->rectangle.width = w;
-    shark->rectangle.height = h;
+void initShark(Shark *shark, int screenW, int screenH){
+    shark->rectangle.x = screenW / 2;
+    shark->rectangle.y = screenH / 2;
+    shark->rectangle.width = 50;
+    shark->rectangle.height = 25;
     shark->speed = 4;
-    shark->health = 3;
+    shark->health = 100;
+    shark->xp = 0;
+    shark->level = 1;
+}
+
+void updateShark(Shark *shark){
+    updateSharkPosition(shark);
+    updateSharkHealth(shark, -.05);
 }
 
 void updateSharkPosition(Shark *shark){
@@ -21,11 +24,19 @@ void updateSharkPosition(Shark *shark){
     if(IsKeyDown(KEY_DOWN)) shark->rectangle.y += shark->speed;
 }
 
-void upgradeShark(Shark *shark){
-    shark->rectangle.height *= 1.05;
-    shark->rectangle.width *= 1.05;
+void updateSharkHealth(Shark *shark, float amount){
+    float newHealth = shark->health + amount;
+    if(newHealth > 100){
+        newHealth = 100;
+    }
+    shark->health = newHealth;
+}
+
+void upgradeShark(Shark *shark, int enemySize){
+    shark->xp += enemySize/100;
+    updateSharkHealth(shark, 5);
 }
 
 void drawShark(Shark *shark){
-    DrawRectangleRec(shark->rectangle, BLUE);
+    DrawRectangleRec(shark->rectangle, GRAY);
 }
