@@ -2,26 +2,32 @@
 #include "shark.h"
 #include "raylib.h"
 
+const int STATUS_BAR_HEIGHT = 25;
+const int STATUS_BAR_WIDTH = 250;
+const int STATUS_BAR_OFFSET = 25;
+const int HEALTH_BAR_Y = 25;
+
 void drawUI(Shark *shark){
-    int width = 200;
-    int height = 20;
-    drawHealthBar(shark->health, width, height);
-    drawXpBar(shark->level, shark->xp, width, height);
+    drawHealthBar(shark->health);
+    drawXpBar(shark->level, shark->xp);
 }
 
-void drawHealthBar(float health, int width, int height){
-    float healthPortion = (health/100) * width;
-    float emptyPortion = width - healthPortion;
-    float emptyX = 25 + (-healthPortion + width);
-    DrawRectangle(GetScreenWidth() - 225, 20, healthPortion, height, RED);
-    DrawRectangle(GetScreenWidth() - emptyX, 20, emptyPortion,height, WHITE);
+void drawHealthBar(float health){
+    int x = (STATUS_BAR_OFFSET + STATUS_BAR_WIDTH);
+    float healthPortion = (health/100) * STATUS_BAR_WIDTH;
+    float emptyPortion = STATUS_BAR_WIDTH - healthPortion;
+    float emptyX = (x - STATUS_BAR_WIDTH) + (-healthPortion + STATUS_BAR_WIDTH);
+    DrawRectangle(GetScreenWidth() - x, STATUS_BAR_HEIGHT, healthPortion, STATUS_BAR_HEIGHT, RED);
+    DrawRectangle(GetScreenWidth() - emptyX, STATUS_BAR_HEIGHT, emptyPortion, STATUS_BAR_HEIGHT, WHITE);
 }
 
-void drawXpBar(int level, float xp, int width, int height){
+void drawXpBar(int level, float xp){
+    int x = (STATUS_BAR_OFFSET + STATUS_BAR_WIDTH);
+    int y = HEALTH_BAR_Y + (STATUS_BAR_HEIGHT * 2);
     int nextLevelXp = level * 100;
-    float xpPortion = (xp / nextLevelXp) * width;
-    float emptyPortion = width - xpPortion;
-    float emptyX = 25 + (-xpPortion + width);
-    DrawRectangle(GetScreenWidth() - 225, 60, xpPortion, height, GREEN);
-    DrawRectangle(GetScreenWidth() - emptyX, 60, emptyPortion, height, WHITE);
+    float xpPortion = (xp / nextLevelXp) * STATUS_BAR_WIDTH;
+    float emptyPortion = STATUS_BAR_WIDTH - xpPortion;
+    float emptyX = (x - STATUS_BAR_WIDTH) + (STATUS_BAR_WIDTH - xpPortion);
+    DrawRectangle(GetScreenWidth() - x, y, xpPortion, STATUS_BAR_HEIGHT, GREEN);
+    DrawRectangle(GetScreenWidth() - emptyX, y, emptyPortion, STATUS_BAR_HEIGHT, WHITE);
 }

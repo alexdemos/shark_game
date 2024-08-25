@@ -46,7 +46,6 @@ int main(void)
 
             drawShark(shark);
             drawEnemies(enemies,enemyAmount);
-
             drawUI(shark);
 
         EndDrawing();
