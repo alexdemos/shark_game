@@ -18,18 +18,29 @@ int main(void)
     //--------------------------------------------------------------------------------------
     const int screenWidth = 1920;
     const int screenHeight = 1080;
-    int enemyAmount = 3;
+    const int SCREEN_BUFFER = 200;
+    int enemyAmount = 36;
+    Color OCEAN = (Color){(unsigned char)3,(unsigned char)96,(unsigned char)186};
 
     BasicEnemy* enemies = malloc(sizeof(*enemies) * enemyAmount);
     Shark *shark = malloc(sizeof(*shark));
     World *world = malloc(sizeof(*world));
     Camera2D camera = { 0 };
     
-    initShark(shark, screenWidth, screenHeight);
-    initEnemies(enemies, enemyAmount);
     initWorld(world);
+    initShark(shark, screenWidth, screenHeight);
+    initEnemies(enemies, enemyAmount, world);
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+
+    Image sharkImage = LoadImage("./assets/shark0.png");
+    Texture2D sharkTexture = LoadTextureFromImage(sharkImage);
+    SetTextureFilter(sharkTexture, TEXTURE_FILTER_TRILINEAR);
+    UnloadImage(sharkImage);
+    Image cloudImage = LoadImage("./assets/cloud.png");
+    Texture2D cloudTexture = LoadTextureFromImage(cloudImage);
+    SetTextureFilter(cloudTexture, TEXTURE_FILTER_TRILINEAR);
+    UnloadImage(cloudImage);
 
     initCamera(&camera, shark);
     
@@ -41,22 +52,22 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-        handleCollisions(shark, enemies, enemyAmount);
+        handleCollisions(shark, enemies, enemyAmount, world);
 
         updateShark(shark, world);    
         updateEnemies(enemies, enemyAmount);
-
-        updateCamera(&camera, shark);
+        updateCamera(&camera, shark, SCREEN_BUFFER);
 
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(SKYBLUE);
+            ClearBackground(OCEAN);
 
             BeginMode2D(camera);
-            drawShark(shark);
+            drawWorld(world, cloudTexture, SCREEN_BUFFER);    
             drawEnemies(enemies,enemyAmount);
+            drawShark(shark, sharkTexture);
             EndMode2D();
 
             drawUI(shark);
@@ -67,6 +78,8 @@ int main(void)
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
+    UnloadTexture(sharkTexture);
+    UnloadTexture(cloudTexture);
     CloseWindow();        // Close window and OpenGL context
     free(enemies);
     free(shark);

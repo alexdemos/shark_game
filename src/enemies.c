@@ -1,19 +1,21 @@
 #include "enemies.h"
+#include "world.h"
 #include "raylib.h"
 #include <stdbool.h>
 #include <stdlib.h>
 
-void initEnemies(BasicEnemy *buffer, int amount){
+void initEnemies(BasicEnemy *buffer, int amount, World *world){
     int i;
     for (i=0; i<amount; i++) {
         BasicEnemy *enemy = malloc(sizeof(*enemy));
-        enemy->rectangle.x = 100 * (i+1);
-        enemy->rectangle.y = 100 * (i+1);
+        enemy->range = 175;
+        Vector2 pos = getRandomPosition(world, enemy);
+        enemy->rectangle.x = pos.x;
+        enemy->rectangle.y = pos.y;
         enemy->rectangle.height = 10;
         enemy->rectangle.width = 20;
         enemy->origin[0] = enemy->rectangle.x;
         enemy->origin[1] = enemy->rectangle.y;
-        enemy->range = 175;
         enemy->speed = 2;
         enemy->color = RED;
         enemy->seesPlayer = false;
@@ -48,9 +50,17 @@ void drawEnemies(BasicEnemy *enemies, int amount){
     }
 }
 
-void recycleEnemy(BasicEnemy *enemy){
-    enemy->rectangle.x = rand() % GetScreenWidth();
-    enemy->rectangle.y = rand() % GetScreenHeight();
+void recycleEnemy(BasicEnemy *enemy, World *world){
+    Vector2 pos = getRandomPosition(world, enemy);
+    enemy->rectangle.x = pos.x;
+    enemy->rectangle.y = pos.y;
     enemy->origin[0] = enemy->rectangle.x;
     enemy->origin[1] = enemy->rectangle.y;
+}
+
+Vector2 getRandomPosition(World *world, BasicEnemy *enemy){
+    //makes sure enemies don't clip into right wall
+    Vector2 pos = {(rand() % (world->RIGHT - world->LEFT - enemy->range)) - world->RIGHT,
+                   (rand() % (world->GROUND - world->SURFACE)) - world->GROUND};
+    return pos;
 }

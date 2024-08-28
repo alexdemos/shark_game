@@ -1,8 +1,6 @@
 #include "camera.h"
 #include "raylib.h"
 
-const int SCREEN_BUFFER = 200;
-
 void initCamera(Camera2D *camera, Shark *shark){
     camera->target = (Vector2){ shark->rectangle.x + (shark->rectangle.width / 2), 
                         shark->rectangle.y + (shark->rectangle.height / 2)};
@@ -10,7 +8,7 @@ void initCamera(Camera2D *camera, Shark *shark){
     camera->zoom = 1.0f;
 }
 
-void updateCamera(Camera2D *camera, Shark *shark){
+void updateCamera(Camera2D *camera, Shark *shark, int SCREEN_BUFFER){
     float x = shark->rectangle.x + (shark->rectangle.width / 2);
     float y = shark->rectangle.y + (shark->rectangle.height / 2);
     float cameraY = camera->target.y;

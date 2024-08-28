@@ -4,6 +4,6 @@
 #include "shark.h"
 
 void initCamera(Camera2D *camera, Shark *shark);
-void updateCamera(Camera2D *camera, Shark *shark);
+void updateCamera(Camera2D *camera, Shark *shark, int SCREEN_BUFFER);
 
 #endif

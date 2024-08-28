@@ -4,11 +4,11 @@
 #include "raylib.h"
 
 void initShark(Shark *shark, int screenW, int screenH){
-    shark->rectangle.x = screenW / 2.0f;
-    shark->rectangle.y = screenH / 2.0f;
+    shark->rectangle.x = 0.0f;
+    shark->rectangle.y = 0.0f;
     shark->rectangle.width = 50.0f;
     shark->rectangle.height = 25.0f;
-    shark->speed = 4;
+    shark->speed = 10;
     shark->health = 100;
     shark->xp = 0;
     shark->level = 1;
@@ -25,8 +25,8 @@ void updateSharkPosition(Shark *shark, World *world){
     if(IsKeyDown(KEY_UP)) shark->rectangle.y -= shark->speed;
     if(IsKeyDown(KEY_DOWN)) shark->rectangle.y += shark->speed;
     if(shark->rectangle.x < world->LEFT) shark->rectangle.x = world->LEFT;
-    if(shark->rectangle.x > world->RIGHT) shark->rectangle.x = world->RIGHT;
-    if(shark->rectangle.y > world->GROUND) shark->rectangle.y = world->GROUND;
+    if(shark->rectangle.x + shark->rectangle.width > world->RIGHT) shark->rectangle.x = world->RIGHT - shark->rectangle.width;
+    if(shark->rectangle.y + shark->rectangle.height> world->GROUND) shark->rectangle.y = world->GROUND - shark->rectangle.height;
     if(shark->rectangle.y < world->SURFACE) shark->rectangle.y = world->SURFACE;
 }
 
@@ -45,6 +45,7 @@ void upgradeShark(Shark *shark, int enemySize){
     updateSharkHealth(shark, 5);
 }
 
-void drawShark(Shark *shark){
+void drawShark(Shark *shark, Texture2D texture){
     DrawRectangleRec(shark->rectangle, GRAY);
+    DrawTexturePro(texture, (Rectangle){0.0f,0.0f,33.0f,19.0f}, shark->rectangle, (Vector2){0,0},0, WHITE);
 }

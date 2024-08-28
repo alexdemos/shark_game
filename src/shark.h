@@ -16,6 +16,6 @@ void updateShark(Shark *shark, World *world);
 void updateSharkHealth(Shark *shark, float amount);
 void updateSharkPosition(Shark *shark, World *world);
 void upgradeShark(Shark *shark, int enemySize);
-void drawShark(Shark *traits);
+void drawShark(Shark *traits, Texture2D texture);
 
 #endif

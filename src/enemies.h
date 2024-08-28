@@ -1,6 +1,7 @@
 #ifndef ENEMIES_H_
 #define ENEMIES_H_
 #include <stdbool.h>
+#include "world.h"
 #include "raylib.h"
 
 typedef struct BasicEnemy {
@@ -18,8 +19,8 @@ void updateEnemies(BasicEnemy *enemies, int amount);
 void drawEnemy(BasicEnemy *enemy);
 void drawEnemies(BasicEnemy *enemies, int amount);
 
-void recycleEnemy(BasicEnemy *enemy);
-
-void initEnemies(BasicEnemy *buffer, int amount);
+void recycleEnemy(BasicEnemy *enemy, World *world);
+void initEnemies(BasicEnemy *buffer, int amount, World *world);
+Vector2 getRandomPosition(World *world, BasicEnemy *enemy);
 
 #endif

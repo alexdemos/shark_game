@@ -6,19 +6,19 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-void processCollision(Shark *shark, BasicEnemy *enemy){
+void processCollision(Shark *shark, BasicEnemy *enemy, World *world){
     if(shark->rectangle.height > enemy->rectangle.height){
         upgradeShark(shark, enemy->rectangle.height * enemy->rectangle.width);
-        recycleEnemy(enemy);
+        recycleEnemy(enemy, world);
     }
 }
 
-void handleCollisions(Shark *shark, struct BasicEnemy *enemies, int enemyAmount){
+void handleCollisions(Shark *shark, struct BasicEnemy *enemies, int enemyAmount, World *world){
     int i;
     for(i=0; i < enemyAmount; i++){
         BasicEnemy *enemy = &enemies[i];
         if(CheckCollisionRecs(shark->rectangle, enemy->rectangle)){
-            processCollision(shark, enemy);
+            processCollision(shark, enemy, world);
         } 
     }
 }
