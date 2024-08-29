@@ -8,7 +8,7 @@
 
 void processCollision(Shark *shark, BasicEnemy *enemy, World *world){
     if(shark->rectangle.height > enemy->rectangle.height){
-        upgradeShark(shark, enemy->xp);
+        upgradeShark(shark, enemy->xp, enemy->healthGiven);
         recycleEnemy(enemy, world);
     }
 }

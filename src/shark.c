@@ -3,14 +3,12 @@
 
 #include "raylib.h"
 
-const int HEALTH_AFTER_EATING = 5;
-
 void initShark(Shark *shark, int screenW, int screenH){
     shark->rectangle.x = 0.0f;
     shark->rectangle.y = 0.0f;
     shark->rectangle.width = 100.0f;
     shark->rectangle.height = 50.0f;
-    shark->speed = 10;
+    shark->speed = 10.0f;
     shark->health = 100;
     shark->xp = 0;
     shark->level = 1;
@@ -42,14 +40,15 @@ void updateSharkHealth(Shark *shark, float amount){
     shark->health = newHealth;
 }
 
-void upgradeShark(Shark *shark, int enemyXp){
+void upgradeShark(Shark *shark, int enemyXp, int health){
     shark->xp += enemyXp;
     int nextLevelXp = calculateNextLevelXp(shark->level);
     if(shark->xp >= nextLevelXp){ 
         shark->xp = shark->xp % nextLevelXp;
         shark->level ++;
+        levelUp(shark);
     }
-    updateSharkHealth(shark, HEALTH_AFTER_EATING);
+    updateSharkHealth(shark, health);
 }
 
 void drawShark(Shark *shark, Texture2D texture){
@@ -60,4 +59,10 @@ void drawShark(Shark *shark, Texture2D texture){
 //returns float so drawing xp bar works
 float calculateNextLevelXp(int level){
     return level * 100;
+}
+
+void levelUp(Shark *shark){
+    shark->speed *= 1.05;
+    shark->rectangle.width *= 1.05;
+    shark->rectangle.height *= 1.05;
 }

@@ -11,6 +11,7 @@ typedef struct BasicEnemy {
     int speed;
     Color color;
     int xp;
+    int healthGiven;
     bool seesPlayer;
 } BasicEnemy;
 

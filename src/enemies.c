@@ -18,7 +18,8 @@ void initEnemies(BasicEnemy *buffer, int amount, World *world){
         enemy->origin[1] = enemy->rectangle.y;
         enemy->speed = 2;
         enemy->color = RED;
-        enemy->xp = 10;
+        enemy->xp = 100;
+        enemy->healthGiven = 5;
         enemy->seesPlayer = false;
         buffer[i] = *enemy;
     }
