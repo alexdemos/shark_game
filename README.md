@@ -1,3 +1,3 @@
-#h2 Shark Game
+## Shark Game
 
-This is an attempt to make a game similair to "Hungry Shark".
+This is an attempt to make a game similar to "Hungry Shark".
