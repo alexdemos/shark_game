@@ -7,7 +7,7 @@ typedef struct Shark {
     Rectangle rectangle;
     int speed;
     float health;
-    float xp;
+    int xp;
     int level;
 } Shark;
 
@@ -17,5 +17,6 @@ void updateSharkHealth(Shark *shark, float amount);
 void updateSharkPosition(Shark *shark, World *world);
 void upgradeShark(Shark *shark, int enemySize);
 void drawShark(Shark *traits, Texture2D texture);
+float calculateNextLevelXp(int level);
 
 #endif

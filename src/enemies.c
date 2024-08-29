@@ -12,12 +12,13 @@ void initEnemies(BasicEnemy *buffer, int amount, World *world){
         Vector2 pos = getRandomPosition(world, enemy);
         enemy->rectangle.x = pos.x;
         enemy->rectangle.y = pos.y;
-        enemy->rectangle.height = 10;
-        enemy->rectangle.width = 20;
+        enemy->rectangle.height = 30;
+        enemy->rectangle.width = 60;
         enemy->origin[0] = enemy->rectangle.x;
         enemy->origin[1] = enemy->rectangle.y;
         enemy->speed = 2;
         enemy->color = RED;
+        enemy->xp = 10;
         enemy->seesPlayer = false;
         buffer[i] = *enemy;
     }

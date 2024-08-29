@@ -21,10 +21,10 @@ void drawHealthBar(float health){
     DrawRectangle(GetScreenWidth() - emptyX, STATUS_BAR_HEIGHT, emptyPortion, STATUS_BAR_HEIGHT, WHITE);
 }
 
-void drawXpBar(int level, float xp){
+void drawXpBar(int level, int xp){
     int x = (STATUS_BAR_OFFSET + STATUS_BAR_WIDTH);
     int y = HEALTH_BAR_Y + (STATUS_BAR_HEIGHT * 2);
-    int nextLevelXp = level * 100;
+    float nextLevelXp = calculateNextLevelXp(level);
     float xpPortion = (xp / nextLevelXp) * STATUS_BAR_WIDTH;
     float emptyPortion = STATUS_BAR_WIDTH - xpPortion;
     float emptyX = (x - STATUS_BAR_WIDTH) + (STATUS_BAR_WIDTH - xpPortion);

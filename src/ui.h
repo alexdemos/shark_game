@@ -5,6 +5,6 @@
 
 void drawUI(Shark *shark);
 void drawHealthBar(float health);
-void drawXpBar(int level, float xp);
+void drawXpBar(int level, int xp);
 
 #endif

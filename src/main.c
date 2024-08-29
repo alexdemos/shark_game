@@ -16,9 +16,9 @@ int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 1920;
-    const int screenHeight = 1080;
-    const int SCREEN_BUFFER = 200;
+    const int screenWidth = 3000;
+    const int screenHeight = 1500;
+    const int SCREEN_BUFFER = 400;
     int enemyAmount = 36;
     Color OCEAN = (Color){(unsigned char)3,(unsigned char)96,(unsigned char)186};
 
