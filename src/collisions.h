@@ -4,7 +4,7 @@
 #include "shark.h"
 #include "enemies.h"
 
-void processCollision(Shark *shark, BasicEnemy *enemy, World *world);
-void handleCollisions(Shark *shark, BasicEnemy *enemies, int enemyAmount, World *world);
+void processCollision(Shark *shark, Enemy *enemy, World *world);
+void handleCollisions(Shark *shark, Enemy **enemies, int enemyAmount, World *world);
 
 #endif

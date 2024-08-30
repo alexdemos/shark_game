@@ -4,7 +4,7 @@
 #include "world.h"
 #include "raylib.h"
 
-typedef struct BasicEnemy {
+typedef struct Enemy {
     Rectangle rectangle;
     int origin[2];
     int range;
@@ -13,16 +13,18 @@ typedef struct BasicEnemy {
     int xp;
     int healthGiven;
     bool seesPlayer;
-} BasicEnemy;
+} Enemy;
 
-void updateEnemy(BasicEnemy *enemy);
-void updateEnemies(BasicEnemy *enemies, int amount);
+void updateEnemy(Enemy *enemy);
+void updateEnemies(Enemy **enemies, int amount);
 
-void drawEnemy(BasicEnemy *enemy);
-void drawEnemies(BasicEnemy *enemies, int amount);
+void drawEnemy(Enemy *enemy);
+void drawEnemies(Enemy **enemies, int amount);
 
-void recycleEnemy(BasicEnemy *enemy, World *world);
-void initEnemies(BasicEnemy *buffer, int amount, World *world);
-Vector2 getRandomPosition(World *world, BasicEnemy *enemy);
+void recycleEnemy(Enemy *enemy, World *world);
+void initBasicEnemies(Enemy **enemies, int amount, World *world);
+Vector2 getRandomPosition(World *world, Enemy *enemy);
+
+void freeEnemies(Enemy **enemies, int amount);
 
 #endif

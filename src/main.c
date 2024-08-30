@@ -22,14 +22,14 @@ int main(void)
     int enemyAmount = 36;
     Color OCEAN = (Color){(unsigned char)3,(unsigned char)96,(unsigned char)186};
 
-    BasicEnemy* enemies = malloc(sizeof(*enemies) * enemyAmount);
+    Enemy **enemies = malloc(sizeof(*enemies) * enemyAmount);
     Shark *shark = malloc(sizeof(*shark));
     World *world = malloc(sizeof(*world));
     Camera2D camera = { 0 };
     
     initWorld(world);
     initShark(shark, screenWidth, screenHeight);
-    initEnemies(enemies, enemyAmount, world);
+    initBasicEnemies(enemies, enemyAmount, world);
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
@@ -80,7 +80,8 @@ int main(void)
     //--------------------------------------------------------------------------------------
     UnloadTexture(sharkTexture);
     UnloadTexture(cloudTexture);
-    CloseWindow();        // Close window and OpenGL context
+    CloseWindow();     // Close window and OpenGL context
+    freeEnemies(enemies, enemyAmount);
     free(enemies);
     free(shark);
     free(world);
