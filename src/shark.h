@@ -15,7 +15,7 @@ void initShark(Shark *shark, int screenW, int screenH);
 void updateShark(Shark *shark, World *world);
 void updateSharkHealth(Shark *shark, float amount);
 void updateSharkPosition(Shark *shark, World *world);
-void upgradeShark(Shark *shark, int enemyXp, int health);
+void upgradeShark(Shark *shark, int enemyXp, float health);
 void drawShark(Shark *traits, Texture2D texture);
 float calculateNextLevelXp(int level);
 void levelUp(Shark *shark);

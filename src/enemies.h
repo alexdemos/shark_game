@@ -6,12 +6,14 @@
 
 typedef struct Enemy {
     Rectangle rectangle;
-    int origin[2];
-    int range;
-    int speed;
     Color color;
+    float origin[2]; //1st x origin; 2nd y origin
+    float range[2]; //1st x range; 2nd y range
+    int habitat[2]; //1st start to spawn; 2nd end spawn 
+    int depth[2]; //1st min depth; 2nd max depth
+    float speed[2];
     int xp;
-    int healthGiven;
+    float healthGiven;
     bool seesPlayer;
 } Enemy;
 

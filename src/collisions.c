@@ -13,12 +13,11 @@ void processCollision(Shark *shark, Enemy *enemy, World *world){
     }
 }
 
-void handleCollisions(Shark *shark, struct Enemy **enemies, int enemyAmount, World *world){
+void handleCollisions(Shark *shark, Enemy **enemies, int enemyAmount, World *world){
     int i;
     for(i=0; i < enemyAmount; i++){
-        Enemy *enemy = enemies[i];
-        if(CheckCollisionRecs(shark->rectangle, enemy->rectangle)){
-            processCollision(shark, enemy, world);
+        if(CheckCollisionRecs(shark->rectangle, enemies[i]->rectangle)){
+            processCollision(shark, enemies[i], world);
         } 
     }
 }

@@ -40,7 +40,7 @@ void updateSharkHealth(Shark *shark, float amount){
     shark->health = newHealth;
 }
 
-void upgradeShark(Shark *shark, int enemyXp, int health){
+void upgradeShark(Shark *shark, int enemyXp, float health){
     shark->xp += enemyXp;
     int nextLevelXp = calculateNextLevelXp(shark->level);
     if(shark->xp >= nextLevelXp){ 
