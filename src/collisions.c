@@ -7,9 +7,12 @@
 #include <stdlib.h>
 
 void processCollision(Shark *shark, Enemy *enemy, World *world){
-    if(shark->rectangle.height > enemy->rectangle.height){
+    if (shark->rectangle.height > enemy->rectangle.height){
         upgradeShark(shark, enemy->xp, enemy->healthGiven);
         recycleEnemy(enemy, world);
+    } else {
+        upgradeShark(shark, 0, enemy->damage);
+        pauseEnemy(enemy);
     }
 }
 

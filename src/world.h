@@ -9,7 +9,7 @@ typedef struct World{
     int RIGHT; 
 } World;
 
-void initWorld(World *world);
+World initWorld();
 void drawWorld(World *world, Texture2D cloudTexture, int SCREEN_BUFER);
 void drawBackgroundTriangles(World *world, int amount);
 void drawClouds(World *world, Texture2D cloudTexture, int SCREEN_BUFFER);

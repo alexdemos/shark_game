@@ -14,17 +14,23 @@ typedef struct Enemy {
     float speed[2];
     int xp;
     float healthGiven;
+    float damage;
     bool seesPlayer;
 } Enemy;
 
 void updateEnemy(Enemy *enemy);
 void updateEnemies(Enemy **enemies, int amount);
+void pauseEnemy(Enemy *enemy);
+void *pauseEnemyThread(void *enemy);
 
 void drawEnemy(Enemy *enemy);
 void drawEnemies(Enemy **enemies, int amount);
 
 void recycleEnemy(Enemy *enemy, World *world);
-void initBasicEnemies(Enemy **enemies, int amount, World *world);
+
+void initBasicEnemies(Enemy **enemies, int amount, World *world, int offset);
+void initBigEnemies(Enemy **enemies, int amount, World *world, int offset);
+
 Vector2 getRandomPosition(World *world, Enemy *enemy);
 
 void freeEnemies(Enemy **enemies, int amount);

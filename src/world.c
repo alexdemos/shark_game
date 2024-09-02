@@ -4,11 +4,13 @@
 
 const int TRIANGLE_AMOUNT = 4;
 
-void initWorld(World *world){
-    world->GROUND = 4000;
-    world->SURFACE = -4000;
-    world->LEFT = -4000;
-    world->RIGHT = 4000;
+World initWorld(){
+    World world;
+    world.GROUND = 4000;
+    world.SURFACE = -4000;
+    world.LEFT = -4000;
+    world.RIGHT = 4000;
+    return world;
 }
 
 void drawWorld(World *world, Texture2D cloudTexture, int SCREEN_BUFFER){
