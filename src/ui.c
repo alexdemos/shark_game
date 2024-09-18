@@ -1,5 +1,4 @@
 #include "ui.h"
-#include "shark.h"
 #include "raylib.h"
 
 const int STATUS_BAR_HEIGHT = 25;

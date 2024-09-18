@@ -42,7 +42,7 @@ int main(void)
     Camera2D camera = { 0 };
     
     world = initWorld();
-    shark = initShark(screenWidth, screenHeight);
+    shark = initShark();
     initBasicEnemies(enemies, basicEnemyAmount, &world, basicOffset);
     initBigEnemies(enemies, bigEnemyAmount, &world, bigOffset);
 

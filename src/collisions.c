@@ -18,8 +18,12 @@ void processCollision(Shark *shark, Enemy *enemy, World *world){
 
 void handleCollisions(Shark *shark, Enemy **enemies, int enemyAmount, World *world){
     int i;
+    Rectangle collider = (Rectangle){shark->rectangle.x-shark->rectangle.width/2,
+                                shark->rectangle.y-shark->rectangle.height/2,
+                                shark->rectangle.width,
+                                shark->rectangle.height};
     for(i=0; i < enemyAmount; i++){
-        if(CheckCollisionRecs(shark->rectangle, enemies[i]->rectangle)){
+        if(CheckCollisionRecs(collider, enemies[i]->rectangle)){
             processCollision(shark, enemies[i], world);
         } 
     }

@@ -2,11 +2,13 @@
 #include "world.h"
 
 #include "raylib.h"
+#include "rlgl.h"
+#include "raymath.h"
 #include <stdbool.h>
 #include <pthread.h>
 #include <unistd.h>
 
-Shark initShark(int screenW, int screenH){
+Shark initShark(){
     Shark shark;
     shark.rectangle.x = 0.0f;
     shark.rectangle.y = 0.0f;
@@ -29,20 +31,34 @@ void updateShark(Shark *shark, World *world){
 }
 
 void updateSharkPosition(Shark *shark, World *world){
+    int offset = 0;
+    float true_x = shark->rectangle.x - (shark->rectangle.width / 2);
+    //use width because shark rotates when moving up
+    float true_y = shark->rectangle.y - (shark->rectangle.width / 2);
     if(IsKeyDown(KEY_RIGHT)) {
         shark->rectangle.x += shark->speed;
         shark->direction = 1;
+        shark->rotation = 0;
+        offset = 45;
     }
     if(IsKeyDown(KEY_LEFT)) { 
         shark->rectangle.x -= shark->speed;
         shark->direction = 0;
+        shark->rotation = 0;
+        offset = -45;
     }
-    if(IsKeyDown(KEY_UP)) shark->rectangle.y -= shark->speed;
-    if(IsKeyDown(KEY_DOWN)) shark->rectangle.y += shark->speed;
-    if(shark->rectangle.x < world->LEFT) shark->rectangle.x = world->LEFT;
-    if(shark->rectangle.x + shark->rectangle.width > world->RIGHT) shark->rectangle.x = world->RIGHT - shark->rectangle.width;
-    if(shark->rectangle.y + shark->rectangle.height> world->GROUND) shark->rectangle.y = world->GROUND - shark->rectangle.height;
-    if(shark->rectangle.y < world->SURFACE) shark->rectangle.y = world->SURFACE;
+    if(IsKeyDown(KEY_UP)) {
+        shark->rectangle.y -= shark->speed;
+        shark->rotation = 90 + (180 * shark->direction) + offset;
+    }
+    if(IsKeyDown(KEY_DOWN)) {
+        shark->rectangle.y += shark->speed;
+        shark->rotation = 270 - (180 * shark->direction) - offset;
+    }
+    if(true_x < world->LEFT) shark->rectangle.x = world->LEFT + (shark->rectangle.width/2);
+    if(true_x + shark->rectangle.width > world->RIGHT) shark->rectangle.x = world->RIGHT - (shark->rectangle.width/2);
+    if(shark->rectangle.y + shark->rectangle.height > world->GROUND) shark->rectangle.y = world->GROUND - shark->rectangle.height;
+    if(true_y < world->SURFACE) shark->rectangle.y = world->SURFACE + (shark->rectangle.width/2);
 }
 
 void *makeInvincibleThread(void *threadArg){
@@ -93,11 +109,17 @@ void drawShark(Shark *shark, Texture2D *texture){
     if (shark->is_invinvible){
         tint = BLUE;
     }
-    //Vector2 origin = (Vector2){shark->rectangle.width/2,shark->rectangle.height/2};
-    Vector2 origin = (Vector2){0,0};
-    DrawRectangleRec(shark->rectangle, GRAY);
-    DrawTexturePro(texture[shark->direction], (Rectangle){0.0f,0.0f,33.0f,19.0f}, shark->rectangle, 
-                origin,shark->rotation, tint);
+    Vector2 origin = (Vector2){shark->rectangle.width/2,shark->rectangle.height/2};
+    Vector2 zero = (Vector2){0,0};
+
+    DrawRectanglePro(shark->rectangle, zero, 0, GRAY);
+
+    DrawTexturePro(texture[shark->direction], 
+                  (Rectangle){0.0f,0.0f,texture[shark->direction].width,texture[shark->direction].height},
+                  shark->rectangle, 
+                  origin,
+                  shark->rotation,
+                  tint);
 }
 
 //returns float so drawing xp bar works

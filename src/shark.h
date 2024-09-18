@@ -15,7 +15,7 @@ typedef struct Shark {
     bool is_invinvible;
 } Shark;
 
-Shark initShark(int screenW, int screenH);
+Shark initShark();
 
 void updateShark(Shark *shark, World *world);
 void updateSharkHealth(Shark *shark, float amount);
