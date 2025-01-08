@@ -25,8 +25,8 @@
 
 # Define required raylib variables
 PROJECT_NAME       ?= main
-RAYLIB_VERSION     ?= 4.5.0
-RAYLIB_PATH        ?= C:/raylib/raylib
+RAYLIB_VERSION     ?= 5.5.0
+RAYLIB_PATH        ?= /opt/homebrew/
 COMPILER_PATH      ?= C:/raylib/w64devkit/bin
 BUILD_MODE         ?= DEBUG
 EXT				   ?= .exe

@@ -26,8 +26,8 @@ int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 3000;
-    const int screenHeight = 1500;
+    const int screenWidth = 1470;
+    const int screenHeight = 946;
     const int SCREEN_BUFFER = 400;
     int basicEnemyAmount = 24;
     int basicOffset = 0;

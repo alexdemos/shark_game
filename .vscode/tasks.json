@@ -1,59 +1,26 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build debug",
-            "type": "process",
-            "command": "make",
+            "label": "build raylib project",
+            "type": "shell",
+            "command": "/usr/bin/gcc",  // Using GCC to compile
             "args": [
-                "PLATFORM=PLATFORM_DESKTOP",
-                "BUILD_MODE=DEBUG",
+                "src/*.c",
+                "-o", "my_game",  // Output executable
+                "-I/opt/homebrew/include", 
+                "-I${workspaceFolder}/src", // Include path for Raylib
+                "-L/opt/homebrew/lib",  // Library path for Raylib
+                "-lraylib",  // Link the Raylib library
+                "-lm",  // Link math library
+                "-lpthread",  // Link pthread library
             ],
-            "windows": {
-                "command": "mingw32-make.exe",
-                "args": [
-                    "RAYLIB_PATH=C:/raylib/raylib",
-                    "BUILD_MODE=DEBUG"
-                ],
-            },
-            "osx": {
-                "args": [
-                    "RAYLIB_PATH=<path_to_raylib>/raylib",
-                    "BUILD_MODE=DEBUG"
-                ],
-            },
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-        {
-            "label": "build release",
-            "type": "process",
-            "command": "make",
-            "args": [
-                "PLATFORM=PLATFORM_DESKTOP",
-            ],
-            "windows": {
-                "command": "mingw32-make.exe",
-                "args": [
-                    "RAYLIB_PATH=C:/raylib/raylib",
-                ],
-            },
-            "osx": {
-                "args": [
-                    "RAYLIB_PATH=<path_to_raylib>/raylib",
-                ],
-            },
-            "group": "build",
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "problemMatcher": ["$gcc"],
+            "detail": "Generated task for Raylib C project"
         }
     ]
 }
