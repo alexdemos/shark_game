@@ -39,13 +39,13 @@ void updateSharkPosition(Shark *shark, World *world){
         shark->rectangle.x += shark->speed;
         shark->direction = 1;
         shark->rotation = 0;
-        offset = 45;
+        offset = -45;
     }
     if(IsKeyDown(KEY_LEFT)) { 
         shark->rectangle.x -= shark->speed;
         shark->direction = 0;
         shark->rotation = 0;
-        offset = -45;
+        offset = 45;
     }
     if(IsKeyDown(KEY_UP)) {
         shark->rectangle.y -= shark->speed;
@@ -114,12 +114,28 @@ void drawShark(Shark *shark, Texture2D *texture){
 
     DrawRectanglePro(shark->rectangle, zero, 0, GRAY);
 
+    if (shark->rotation % 90 == 0){
     DrawTexturePro(texture[shark->direction], 
                   (Rectangle){0.0f,0.0f,texture[shark->direction].width,texture[shark->direction].height},
                   shark->rectangle, 
                   origin,
                   shark->rotation,
                   tint);
+    } else if(shark->rotation==225){
+        DrawTexturePro(texture[shark->direction], 
+                  (Rectangle){0.0f,0.0f,texture[shark->direction].width,texture[shark->direction].height},
+                  shark->rectangle, 
+                  origin,
+                  shark->rotation + 90,
+                  tint);
+    } else if(shark->rotation==135){
+        DrawTexturePro(texture[shark->direction], 
+                  (Rectangle){0.0f,0.0f,texture[shark->direction].width,texture[shark->direction].height},
+                  shark->rectangle, 
+                  origin,
+                  shark->rotation - 90,
+                  tint);
+    } 
 }
 
 //returns float so drawing xp bar works

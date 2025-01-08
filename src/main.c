@@ -65,7 +65,7 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-        handleCollisions(&shark, enemies, totalEnemyAmount, &world);
+        //handleCollisions(&shark, enemies, totalEnemyAmount, &world);
 
         updateShark(&shark, &world);    
         updateEnemies(enemies, totalEnemyAmount);
@@ -81,6 +81,7 @@ int main(void)
             drawWorld(&world, cloudTexture, SCREEN_BUFFER);    
             drawEnemies(enemies,totalEnemyAmount);
             drawShark(&shark, sharkTextures);
+            handleCollisions(&shark, enemies, totalEnemyAmount, &world);
             EndMode2D();
 
             drawUI(&shark);
