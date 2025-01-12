@@ -27,8 +27,8 @@ int main(void)
     // Initialization
     //--------------------------------------------------------------------------------------
     const int screenWidth = 1470;
-    const int screenHeight = 946;
-    const int SCREEN_BUFFER = 400;
+    const int screenHeight = 800;
+    const int SCREEN_BUFFER = 200;
     int basicEnemyAmount = 24;
     int basicOffset = 0;
     int bigEnemyAmount = 12;
@@ -65,7 +65,6 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-        //handleCollisions(&shark, enemies, totalEnemyAmount, &world);
 
         updateShark(&shark, &world);    
         updateEnemies(enemies, totalEnemyAmount);

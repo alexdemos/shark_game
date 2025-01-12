@@ -5,7 +5,7 @@ void initCamera(Camera2D *camera, Shark *shark){
     camera->target = (Vector2){ shark->rectangle.x + (shark->rectangle.width / 2), 
                         shark->rectangle.y + (shark->rectangle.height / 2)};
     camera->offset = (Vector2){ GetScreenWidth()/2.0f, GetScreenHeight()/2.0f };
-    camera->zoom = 1.0f;
+    camera->zoom = 0.5f;
 }
 
 void updateCamera(Camera2D *camera, Shark *shark, int SCREEN_BUFFER){
