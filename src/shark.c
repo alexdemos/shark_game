@@ -112,8 +112,6 @@ void drawShark(Shark *shark, Texture2D *texture){
     Vector2 origin = (Vector2){shark->rectangle.width/2,shark->rectangle.height/2};
     Vector2 zero = (Vector2){0,0};
 
-    DrawRectanglePro(shark->rectangle, zero, 0, GRAY);
-
     if (shark->rotation % 90 == 0){
     DrawTexturePro(texture[shark->direction], 
                   (Rectangle){0.0f,0.0f,texture[shark->direction].width,texture[shark->direction].height},

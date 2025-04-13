@@ -14,6 +14,7 @@
                 "-lraylib",  // Link the Raylib library
                 "-lm",  // Link math library
                 "-lpthread",  // Link pthread library
+                "-g",
             ],
             "group": {
                 "kind": "build",

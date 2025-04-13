@@ -1,0 +1,53 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     my_game
+relocations:
+  - { offset: 0x26, size: 0x8, addend: 0x0, symName: _initCamera, symObjAddr: 0x0, symBinAddr: 0x100001224, symSize: 0xB4 }
+  - { offset: 0x33, size: 0x8, addend: 0x0, symName: _initCamera, symObjAddr: 0x0, symBinAddr: 0x100001224, symSize: 0xB4 }
+  - { offset: 0x65, size: 0x8, addend: 0x0, symName: _updateCamera, symObjAddr: 0xB4, symBinAddr: 0x1000012D8, symSize: 0x1C8 }
+  - { offset: 0x271, size: 0x8, addend: 0x0, symName: _processCollision, symObjAddr: 0x0, symBinAddr: 0x1000014A0, symSize: 0x8C }
+  - { offset: 0x27E, size: 0x8, addend: 0x0, symName: _processCollision, symObjAddr: 0x0, symBinAddr: 0x1000014A0, symSize: 0x8C }
+  - { offset: 0x2BE, size: 0x8, addend: 0x0, symName: _handleCollisions, symObjAddr: 0x8C, symBinAddr: 0x10000152C, symSize: 0xF8 }
+  - { offset: 0x328, size: 0x8, addend: 0x0, symName: _checkCollision, symObjAddr: 0x184, symBinAddr: 0x100001624, symSize: 0x6E0 }
+  - { offset: 0x48E, size: 0x8, addend: 0x0, symName: _rotate, symObjAddr: 0x864, symBinAddr: 0x100001D04, symSize: 0x154 }
+  - { offset: 0x7B3, size: 0x8, addend: 0x0, symName: _initBasicEnemies, symObjAddr: 0x0, symBinAddr: 0x100001E58, symSize: 0x1F4 }
+  - { offset: 0x926, size: 0x8, addend: 0x0, symName: _initBasicEnemies, symObjAddr: 0x0, symBinAddr: 0x100001E58, symSize: 0x1F4 }
+  - { offset: 0x9AC, size: 0x8, addend: 0x0, symName: _getRandomPosition, symObjAddr: 0x1F4, symBinAddr: 0x10000204C, symSize: 0x15C }
+  - { offset: 0x9FE, size: 0x8, addend: 0x0, symName: _initBigEnemies, symObjAddr: 0x350, symBinAddr: 0x1000021A8, symSize: 0x1EC }
+  - { offset: 0xA84, size: 0x8, addend: 0x0, symName: _updateEnemy, symObjAddr: 0x53C, symBinAddr: 0x100002394, symSize: 0x11C }
+  - { offset: 0xAA8, size: 0x8, addend: 0x0, symName: _updateEnemies, symObjAddr: 0x658, symBinAddr: 0x1000024B0, symSize: 0x64 }
+  - { offset: 0xAE8, size: 0x8, addend: 0x0, symName: _pauseEnemyThread, symObjAddr: 0x6BC, symBinAddr: 0x100002514, symSize: 0x84 }
+  - { offset: 0xB3A, size: 0x8, addend: 0x0, symName: _pauseEnemy, symObjAddr: 0x740, symBinAddr: 0x100002598, symSize: 0x70 }
+  - { offset: 0xB7A, size: 0x8, addend: 0x0, symName: _drawEnemy, symObjAddr: 0x7B0, symBinAddr: 0x100002608, symSize: 0x44 }
+  - { offset: 0xB9E, size: 0x8, addend: 0x0, symName: _drawEnemies, symObjAddr: 0x7F4, symBinAddr: 0x10000264C, symSize: 0x64 }
+  - { offset: 0xBDE, size: 0x8, addend: 0x0, symName: _recycleEnemy, symObjAddr: 0x858, symBinAddr: 0x1000026B0, symSize: 0x6C }
+  - { offset: 0xC1E, size: 0x8, addend: 0x0, symName: _freeEnemies, symObjAddr: 0x8C4, symBinAddr: 0x10000271C, symSize: 0x64 }
+  - { offset: 0xDA0, size: 0x8, addend: 0x0, symName: _loadSharkTextures, symObjAddr: 0x0, symBinAddr: 0x100002780, symSize: 0x128 }
+  - { offset: 0xDC9, size: 0x8, addend: 0x0, symName: _loadSharkTextures, symObjAddr: 0x0, symBinAddr: 0x100002780, symSize: 0x128 }
+  - { offset: 0xE0A, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x128, symBinAddr: 0x1000028A8, symSize: 0x334 }
+  - { offset: 0x1294, size: 0x8, addend: 0x0, symName: _initShark, symObjAddr: 0x0, symBinAddr: 0x100002BDC, symSize: 0x4C }
+  - { offset: 0x1380, size: 0x8, addend: 0x0, symName: _initShark, symObjAddr: 0x0, symBinAddr: 0x100002BDC, symSize: 0x4C }
+  - { offset: 0x13A8, size: 0x8, addend: 0x0, symName: _updateShark, symObjAddr: 0x4C, symBinAddr: 0x100002C28, symSize: 0x40 }
+  - { offset: 0x13DA, size: 0x8, addend: 0x0, symName: _updateSharkPosition, symObjAddr: 0x8C, symBinAddr: 0x100002C68, symSize: 0x2D4 }
+  - { offset: 0x1436, size: 0x8, addend: 0x0, symName: _updateSharkHealth, symObjAddr: 0x360, symBinAddr: 0x100002F3C, symSize: 0xDC }
+  - { offset: 0x1484, size: 0x8, addend: 0x0, symName: _makeInvincibleThread, symObjAddr: 0x43C, symBinAddr: 0x100003018, symSize: 0x44 }
+  - { offset: 0x14BA, size: 0x8, addend: 0x0, symName: _makeInvincible, symObjAddr: 0x480, symBinAddr: 0x10000305C, symSize: 0x50 }
+  - { offset: 0x14FA, size: 0x8, addend: 0x0, symName: _upgradeShark, symObjAddr: 0x4D0, symBinAddr: 0x1000030AC, symSize: 0xB0 }
+  - { offset: 0x1548, size: 0x8, addend: 0x0, symName: _calculateNextLevelXp, symObjAddr: 0x580, symBinAddr: 0x10000315C, symSize: 0x20 }
+  - { offset: 0x1570, size: 0x8, addend: 0x0, symName: _levelUp, symObjAddr: 0x5A0, symBinAddr: 0x10000317C, symSize: 0x60 }
+  - { offset: 0x1594, size: 0x8, addend: 0x0, symName: _drawShark, symObjAddr: 0x600, symBinAddr: 0x1000031DC, symSize: 0x374 }
+  - { offset: 0x17E7, size: 0x8, addend: 0x0, symName: _drawUI, symObjAddr: 0x0, symBinAddr: 0x100003550, symSize: 0x3C }
+  - { offset: 0x1800, size: 0x8, addend: 0x0, symName: _STATUS_BAR_HEIGHT, symObjAddr: 0x264, symBinAddr: 0x100003ED4, symSize: 0x0 }
+  - { offset: 0x1821, size: 0x8, addend: 0x0, symName: _STATUS_BAR_WIDTH, symObjAddr: 0x268, symBinAddr: 0x100003ED8, symSize: 0x0 }
+  - { offset: 0x1836, size: 0x8, addend: 0x0, symName: _STATUS_BAR_OFFSET, symObjAddr: 0x26C, symBinAddr: 0x100003EDC, symSize: 0x0 }
+  - { offset: 0x184B, size: 0x8, addend: 0x0, symName: _HEALTH_BAR_Y, symObjAddr: 0x270, symBinAddr: 0x100003EE0, symSize: 0x0 }
+  - { offset: 0x1854, size: 0x8, addend: 0x0, symName: _drawUI, symObjAddr: 0x0, symBinAddr: 0x100003550, symSize: 0x3C }
+  - { offset: 0x1878, size: 0x8, addend: 0x0, symName: _drawHealthBar, symObjAddr: 0x3C, symBinAddr: 0x10000358C, symSize: 0x10C }
+  - { offset: 0x18D4, size: 0x8, addend: 0x0, symName: _drawXpBar, symObjAddr: 0x148, symBinAddr: 0x100003698, symSize: 0x11C }
+  - { offset: 0x1A50, size: 0x8, addend: 0x0, symName: _initWorld, symObjAddr: 0x0, symBinAddr: 0x1000037B4, symSize: 0x2C }
+  - { offset: 0x1A69, size: 0x8, addend: 0x0, symName: _TRIANGLE_AMOUNT, symObjAddr: 0x570, symBinAddr: 0x100003EE4, symSize: 0x0 }
+  - { offset: 0x1A7E, size: 0x8, addend: 0x0, symName: _initWorld, symObjAddr: 0x0, symBinAddr: 0x1000037B4, symSize: 0x2C }
+  - { offset: 0x1AA6, size: 0x8, addend: 0x0, symName: _drawWorld, symObjAddr: 0x2C, symBinAddr: 0x1000037E0, symSize: 0x22C }
+  - { offset: 0x1AE7, size: 0x8, addend: 0x0, symName: _drawBackgroundTriangles, symObjAddr: 0x258, symBinAddr: 0x100003A0C, symSize: 0x16C }
+  - { offset: 0x1B43, size: 0x8, addend: 0x0, symName: _drawClouds, symObjAddr: 0x3C4, symBinAddr: 0x100003B78, symSize: 0x1AC }
+...

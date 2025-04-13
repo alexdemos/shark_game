@@ -9,6 +9,5 @@ void processCollision(Shark *shark, Enemy *enemy, World *world);
 void handleCollisions(Shark *shark, Enemy **enemies, int enemyAmount, World *world);
 bool checkCollision(Shark *shark, Rectangle enemy);
 Vector2 rotate(Vector2 point, Vector2 origin, double angle);
-double dotProduct(Vector2 point1, Vector2 point2);
 
 #endif
