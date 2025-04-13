@@ -29,9 +29,9 @@ int main(void)
     const int screenWidth = 1470;
     const int screenHeight = 800;
     const int SCREEN_BUFFER = 200;
-    int basicEnemyAmount = 24;
+    int basicEnemyAmount = 100;
     int basicOffset = 0;
-    int bigEnemyAmount = 12;
+    int bigEnemyAmount = 25;
     int bigOffset = basicOffset + basicEnemyAmount;
     int totalEnemyAmount = basicEnemyAmount + bigEnemyAmount;
     Color OCEAN = (Color){(unsigned char)3,(unsigned char)96,(unsigned char)186};

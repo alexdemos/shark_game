@@ -8,7 +8,7 @@ typedef struct Enemy {
     Rectangle rectangle;
     Color color;
     float origin[2]; //1st x origin; 2nd y origin
-    float range[2]; //1st x range; 2nd y range
+    int range[2]; //1st x range; 2nd y range
     int habitat[2]; //1st start to spawn; 2nd end spawn 
     int depth[2]; //1st min depth; 2nd max depth
     float speed[2];

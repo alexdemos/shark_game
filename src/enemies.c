@@ -11,8 +11,8 @@ void initBasicEnemies(Enemy **enemies, int amount, World *world, int offset){
     int i;
     for (i=offset; i<amount+offset; i++) {
         Enemy *enemy = malloc(sizeof(*enemy));
-        enemy->range[0] = 250.0f;
-        enemy->range[1] = 75.0f; 
+        enemy->range[0] = 250;
+        enemy->range[1] = 75; 
         enemy->habitat[0] = 0;
         enemy->habitat[1] = world->RIGHT/2;
         enemy->depth[0] = world->SURFACE;
@@ -128,10 +128,12 @@ void recycleEnemy(Enemy *enemy, World *world){
 
 Vector2 getRandomPosition(World *world, Enemy *enemy){
     int negative[2] = {-1,1};
-    Vector2 pos = {((rand() % (enemy->habitat[1] - enemy->habitat[0] - (int)enemy->range[0] - (int)enemy->rectangle.width)) 
-                    + enemy->habitat[0]) * negative[rand()%2],
-                   (rand() % (enemy->depth[1] - enemy->depth[0] - (int)enemy->range[1] - (int)enemy->rectangle.height)) 
-                    + enemy->depth[0]};
+    Vector2 pos = {(rand() % (world->RIGHT -  2*enemy->range[0]) * negative[rand()%2]),
+                   (rand() % (world->GROUND - 2*enemy->range[1]) * negative[rand()%2])};
+    // Vector2 pos = {((rand() % (enemy->habitat[1] - enemy->habitat[0] - (int)enemy->range[0] - (int)enemy->rectangle.width)) 
+    //                 + enemy->habitat[0]) * negative[rand()%2],
+    //                (rand() % (enemy->depth[1] - enemy->depth[0] - (int)enemy->range[1] - (int)enemy->rectangle.height)) 
+    //                 + enemy->depth[0]};
     return pos;
 }
 
